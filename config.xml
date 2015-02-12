@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.dinesh.cgp" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>CGP</name>
+    <description>
+        Product Catalogue app.
+    </description>
+    <author email="dineshkumar.r@cgvakindia.com" href="http://cordova.io">
+        Dinesh Raja
+    </author>
+    <content src="index.html" />
+    <access origin="*" />
+
+    <!--Preferences-->
+    <preference name="permissions" value="none" />
+    <preference name="phonegap-version" value="3.6.3" />
+    <preference name="orientation" value="default" />
+    <preference name="target-device" value="universal" />
+    <preference name="fullscreen" value="false" />
+    <preference name="webviewbounce" value="false" />
+    <preference name="prerendered-icon" value="false" />
+    <preference name="stay-in-webview" value="false" />
+    <preference name="ios-statusbarstyle" value="black-opaque" />
+    <preference name="detect-data-types" value="true" />
+    <preference name="exit-on-suspend" value="false" />
+    <preference name="show-splash-screen-spinner" value="true" />
+    <preference name="auto-hide-splash-screen" value="true" />
+    <preference name="disable-cursor" value="false" />
+    <preference name="android-minSdkVersion" value="7" />
+    <preference name="android-installLocation" value="auto" />
+    <preference name="SplashScreenDelay" value="10000" />
+    <preference name="StatusBarOverlaysWebView" value="true" />
+
+    <!--Plugins-->
+    <gap:plugin name="org.apache.cordova.inappbrowser" version="0.5.2" />
+    <gap:plugin name="org.apache.cordova.camera" version="0.3.2" />
+    <gap:plugin name="nl.x-services.plugins.toast" />
+    <gap:plugin name="com.brodysoft.sqliteplugin" version="1.0.0" />
+
+</widget>

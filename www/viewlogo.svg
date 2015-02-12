@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="100"
+   height="96"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="viewlogo.svg">
+  <defs
+     id="defs4">
+    <filter
+       id="filter3759"
+       inkscape:label="Cutout"
+       x="0"
+       y="0"
+       width="1"
+       height="1"
+       inkscape:menu="Shadows and Glows"
+       inkscape:menu-tooltip="Drop shadow under the cut-out of the shape"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur3761"
+         in="SourceAlpha"
+         stdDeviation="4.2" />
+      <feOffset
+         id="feOffset3763"
+         dy="5"
+         dx="5"
+         result="result91" />
+      <feComposite
+         id="feComposite3765"
+         in2="result91"
+         operator="out"
+         in="SourceGraphic" />
+    </filter>
+    <filter
+       id="filter4000"
+       y="-0.25"
+       height="1.5"
+       inkscape:menu-tooltip="Darkens the edge with an inner blur and adds a flexible glow"
+       inkscape:menu="Shadows and Glows"
+       inkscape:label="Dark and Glow"
+       color-interpolation-filters="sRGB">
+      <feGaussianBlur
+         id="feGaussianBlur4002"
+         stdDeviation="5"
+         result="result6" />
+      <feComposite
+         id="feComposite4004"
+         in2="result6"
+         result="result8"
+         in="SourceGraphic"
+         operator="atop" />
+      <feComposite
+         id="feComposite4006"
+         in2="SourceAlpha"
+         result="result9"
+         operator="over"
+         in="result8" />
+      <feColorMatrix
+         id="feColorMatrix4008"
+         values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 1 0 "
+         result="result10" />
+      <feBlend
+         id="feBlend4010"
+         in2="result6"
+         in="result10"
+         mode="normal" />
+    </filter>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="7.9195959"
+     inkscape:cx="44.817674"
+     inkscape:cy="49.415172"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="959"
+     inkscape:window-height="744"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <sodipodi:guide
+       orientation="0,1"
+       position="29.168155,81.064742"
+       id="guide3854" />
+    <sodipodi:guide
+       orientation="0,1"
+       position="13.258252,10.985409"
+       id="guide3856" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="15.026019,70.079333"
+       id="guide3858" />
+    <sodipodi:guide
+       orientation="1,0"
+       position="85.105352,42.552676"
+       id="guide3860" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-956.3622)">
+    <rect
+       style="fill:#ffffa5;fill-opacity:1;fill-rule:evenodd;stroke:none;opacity:0.52263374"
+       id="rect2985"
+       width="100"
+       height="96"
+       x="7.8508009e-09"
+       y="956.4364"
+       inkscape:export-filename="/home/dinesh/PG-Code/CGP/www/img/view.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <g
+       id="g4308">
+      <circle
+         style="fill:#800000"
+         transform="matrix(0.88736461,0,0,1.0937118,5.2223627,950.17955)"
+         id="circle4257"
+         r="7.131"
+         cx="18.132"
+         cy="26.545"
+         sodipodi:cx="18.132"
+         sodipodi:cy="26.545"
+         sodipodi:rx="7.131"
+         sodipodi:ry="7.131"
+         d="m 25.263,26.545 c 0,3.938343 -3.192657,7.131 -7.131,7.131 -3.938343,0 -7.131,-3.192657 -7.131,-7.131 0,-3.938342 3.192657,-7.131 7.131,-7.131 3.938343,0 7.131,3.192658 7.131,7.131 z" />
+      <rect
+         style="fill:#808000"
+         id="rect4259"
+         width="49.951527"
+         height="11.066176"
+         x="35.054672"
+         y="973.67902" />
+      <circle
+         style="fill:#808000"
+         transform="matrix(0.88736461,0,0,1.0937118,5.2223627,950.17955)"
+         id="circle4261"
+         r="7.131"
+         cx="18.132"
+         cy="51.219002"
+         sodipodi:cx="18.132"
+         sodipodi:cy="51.219002"
+         sodipodi:rx="7.131"
+         sodipodi:ry="7.131"
+         d="m 25.263,51.219002 c 0,3.938342 -3.192657,7.131 -7.131,7.131 -3.938343,0 -7.131,-3.192658 -7.131,-7.131 0,-3.938343 3.192657,-7.131 7.131,-7.131 3.938343,0 7.131,3.192657 7.131,7.131 z" />
+      <rect
+         style="fill:#800000"
+         id="rect4263"
+         width="49.951527"
+         height="11.066176"
+         x="35.054672"
+         y="1000.6642" />
+      <circle
+         style="fill:#ffaaaa"
+         transform="matrix(0.88736461,0,0,1.0937118,5.2223627,950.17955)"
+         id="circle4265"
+         r="7.131"
+         cx="18.132"
+         cy="76.032997"
+         sodipodi:cx="18.132"
+         sodipodi:cy="76.032997"
+         sodipodi:rx="7.131"
+         sodipodi:ry="7.131"
+         d="m 25.263,76.032997 c 0,3.938343 -3.192657,7.131 -7.131,7.131 -3.938343,0 -7.131,-3.192657 -7.131,-7.131 0,-3.938342 3.192657,-7.131 7.131,-7.131 3.938343,0 7.131,3.192658 7.131,7.131 z" />
+      <rect
+         style="fill:#0000ff"
+         id="rect4267"
+         width="49.951527"
+         height="11.065082"
+         x="35.054672"
+         y="1027.8058" />
+    </g>
+  </g>
+</svg>
