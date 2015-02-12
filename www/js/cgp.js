@@ -9,6 +9,7 @@ $(document).ready(function(){
 		var officeSite=window.open('http://www.cgvakindia.com/','_blank','location=yes','closebuttoncaption=Ok','toolbarposition=top');
 	}
 
+			/**Starting of Camera Methods**/
 	//Method to open Camera
 	function openCamera(){
 		var camOptions={
@@ -24,23 +25,63 @@ $(document).ready(function(){
 	}
 	//Method called after CameraSuccess
 	function onCamClick(imageURI){
-		$("#picFrame").html("<img src='"+imageURI+"'id='picMan'>");
-		var fileName=$("#picMan").attr('src');
-		
-	}
+		$("#picFrame").html("<img src='"+imageURI+"'id='picMan'>");	
+			}
 	//Method Called after CameraFailure
 	function onCamClose(){
 		alert("Camera Error");
 	}
 
+			/**End of Camera Methods**/
+
+			/**Starting of DB Methods**/
 	//Method to Create DB and Table
 	function dbSettings(){
 		dbName.transaction(function(tx){
-			tx.executeSql("create table if not exists cgptable(pid primary key integer,pname text,pdes text,pprice real)");
-			alert("Created Table");
+			//tx.executeSql("drop table if exists cgptable");
+			tx.executeSql("create table if not exists cgptable(pid integer primary key ,pname text,pdes text,pprice real,ppicpath text)");
+			
 		});
 	}
 
+	//Method to Store data in Table
+	function saveProduct(){
+		
+		var sname=$("#productNameBox").val();
+		var sdes=$("#productDescBox").val();
+		var sprice=$("#picPriceBox").val();		
+		var spath=$("#picMan").attr('src');
+		
+		dbName.transaction(function(tx){
+			tx.executeSql("insert into cgptable(pname,pdes,pprice,ppicpath) values(?,?,?,?)",[sname,sdes,sprice,spath]);			
+		});
+		$("#productList").html(" ");
+		$(":mobile-pagecontainer").pagecontainer("change","#list-page");
+		readProducts();
+	}
+
+	//Method to list Products
+	function listProducts(tx,results){
+		
+		for(var i=0;i<results.rows.length;i++){
+			var row=results.rows.item(i);
+			$("#productList").append("<li id='"+row.pid+"' class='pl'><a href='#'><img src='"+row.ppicpath+"'><h2>"+row.pname+"</h2></a></li>");
+		}
+		$("#productList").listview("refresh");
+	}
+
+	//Method to read Products
+	function readProducts(){
+		
+		dbName.transaction(function(tx){
+			tx.executeSql("select * from cgptable",[],listProducts);			
+		});
+	} 
+
+
+	
+
+			/**Ending of DB Methods**/
 	document.addEventListener('deviceready',function(){
 
 	//Creates DB
@@ -55,13 +96,19 @@ $(document).ready(function(){
 		window.location.reload();
 	});
 
+	//Displays List Page	
+	$("#lister").tap(function(){
+		$(":mobile-pagecontainer").pagecontainer("change","#list-page");	
+		$("#productList").html(" ");
+		readProducts();
+	});
+
 	//Displays add-page width adjusted heights
 	$("#adder").tap(function(){
-		$(":mobile-pagecontainer").pagecontainer("change","#add-page");
-		
+		$(":mobile-pagecontainer").pagecontainer("change","#add-page");		
 		$("#picFrame,#picNameFrame").css("height",frameHeight+"px");//SPecifies height for the PicFrame and NameFrame
-		$("#picDescFrame").css("height",(pageHeight/100)*50+"px");//Specifies the height for the PicDescription
-				
+		$("#picDescFrame").css("height",(pageHeight/100)*32+"px");//Specifies the height for the PicDescription
+			
 	});
 
 	//Invokes webShower method
@@ -72,6 +119,7 @@ $(document).ready(function(){
 	$("#mapFrame").css("height",mapHeight+"px");	
 });
 
+	$("#savebtn").tap(saveProduct);
 	//Device Ready
 	});
 	//Loaded all data into DOM

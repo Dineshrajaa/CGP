@@ -26,7 +26,7 @@
                 <center>
                 <div class="ui-grid-a">
                 <div class="ui-block-a">
-                    <div  class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext tiles" ></div>                    
+                    <div  class="ui-btn ui-shadow ui-corner-all ui-icon-bullets ui-btn-icon-notext tiles" id="lister"></div>                    
                 </div>
                 <div class="ui-block-b">
                     <div  class="ui-btn ui-shadow ui-corner-all ui-icon-plus ui-btn-icon-notext tiles"  id="adder"></div> 
@@ -73,21 +73,37 @@
             <header data-role="header" data-theme="c" data-position="fixed">
             <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">Back</a>
             <h1>Add Products</h1>
+            <a href="#" data-role="button" id="savebtn" data-icon="check" data-iconpos="notext">Save</a>
             </header>
             <article data-role="content">
                 <div class="product_pic" id="picFrame"></div>
                 <div class="product_id" id="picNameFrame">   
                     <input type="text" placeholder="Product Name" id="productNameBox" />
-                    <input type="text" placeholder="Product Code" id="productIdBox" />           
+                    <input type="text" placeholder="Product Code" id="productIdBox" readonly="true" />           
                 </div>
                 <div class="product_description" id="picDescFrame" >
                     <textarea id="productDescBox" placeholder="Product Description"></textarea>
-                    <input type="text" placeholder="Product Price" id="picPrice">
+                    <input type="text" placeholder="Product Price" id="picPriceBox" />
                 </div> 
             </article>
             <footer data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
                 <h1>&copy All Rights Reserved</h1>
             </footer>
+        </section>
+        <section data-role="page" id="list-page">
+        <header data-role="header" data-theme="c" data-position="fixed">
+            <h1>Product List</h1>
+        </header>
+        <article data-role="content">
+            <ul data-role="listview" id="productList"></ul>
+        </article>
+        <footer data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
+                <h1>&copy All Rights Reserved</h1>
+            </footer>
+        </section>
+
+        <section data-role="page" id="edit-page">
+            
         </section>
         <script type="text/javascript" src="cordova.js"></script>
         
