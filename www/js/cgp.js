@@ -3,6 +3,9 @@ $(document).ready(function(){
 	var pageHeight=$(window).height()-44;//To detect device height
 	var frameHeight=(pageHeight/100)*30;//To Set Picture Frame Height
 	var dbName;
+	var uid;
+
+	
 	
 	//Method to load office site in Inappbrowser
 	function webShower(){
@@ -11,7 +14,7 @@ $(document).ready(function(){
 
 			/**Starting of Camera Methods**/
 	//Method to open Camera
-	function openCamera(){
+	function openCamera(){	
 		var camOptions={
 			quality : 75,
   			destinationType : Camera.DestinationType.FILE_URI,
@@ -20,7 +23,7 @@ $(document).ready(function(){
   			encodingType: Camera.EncodingType.JPEG,
   			targetWidth: 110,
   			targetHeight: frameHeight  
-		}
+		};	
 		navigator.camera.getPicture(onCamClick,onCamClose,camOptions);
 	}
 	//Method called after CameraSuccess
@@ -32,16 +35,31 @@ $(document).ready(function(){
 		alert("Camera Error");
 	}
 
+	function openEditCamera(){
+		var camOptions={
+			quality : 75,
+  			destinationType : Camera.DestinationType.FILE_URI,
+  			sourceType : Camera.PictureSourceType.CAMERA,
+  			allowEdit : true,
+  			encodingType: Camera.EncodingType.JPEG,
+  			targetWidth: 110,
+  			targetHeight: frameHeight  
+		};
+		navigator.camera.getPicture(onEditCamClick,onCamClose,camOptions);
+	}
+
+	function onEditCamClick(imageURI){
+		$("#editPicFrame").html("<img src='"+imageURI+"'id='editPicMan'>");
+	}
+
 			/**End of Camera Methods**/
 
 			/**Starting of DB Methods**/
 	//Method to Create DB and Table
 	function dbSettings(){
-		dbName.transaction(function(tx){
-			//tx.executeSql("drop table if exists cgptable");
+		dbName.transaction(function(tx){			
 			tx.executeSql("create table if not exists cgptable(pid integer primary key ,pname text,pdes text,pprice real,ppicpath text)");
-			
-		});
+					});
 	}
 
 	//Method to Store data in Table
@@ -61,8 +79,7 @@ $(document).ready(function(){
 	}
 
 	//Method to list Products
-	function listProducts(tx,results){
-		
+	function listProducts(tx,results){		
 		for(var i=0;i<results.rows.length;i++){
 			var row=results.rows.item(i);
 			$("#productList").append("<li id='"+row.pid+"' class='pl'><a href='#'><img src='"+row.ppicpath+"'><h2>"+row.pname+"</h2></a></li>");
@@ -72,13 +89,41 @@ $(document).ready(function(){
 
 	//Method to read Products
 	function readProducts(){
-		
+		$("#productList").html(" ");		
 		dbName.transaction(function(tx){
 			tx.executeSql("select * from cgptable",[],listProducts);			
 		});
 	} 
 
+	//Method to edit products
+	function editProduct(eid){		
+		$(":mobile-pagecontainer").pagecontainer("change","#edit-page");		
+		uid=eid;
+		dbName.transaction(function(tx){
+			tx.executeSql('select * from cgptable where pid = "'+uid+ '"', [],function(transaction,results){
+				var row=results.rows.item(0);
+				$("#editPicFrame").html("<img src='"+row.ppicpath+"'id='editPicMan'>");
+				$("#editProductNameBox").val(row.pname);
+				$("#editProductIdBox").val(row.pid);
+				$("#editProductDescBox").val(row.pdes);
+				$("#editPicPriceBox").val(row.pprice);
+			});
+		});
+	}
 
+	//Method to Update Data
+	function updateProduct(){
+		var upname=$("#editProductNameBox").val();
+		var updes=$("#editProductDescBox").val();
+		var uprice=$("#editPicPriceBox").val();
+		var upath=$("#editPicMan").attr('src');
+		dbName.transaction(function(tx){
+				tx.executeSql("update cgptable set pname=?,pdes=?,pprice=?,ppicpath=? where pid='"+uid+"'",[upname,updes,uprice,upath]);
+			});
+		//$("#productList").html(" ");
+		$(":mobile-pagecontainer").pagecontainer("change","#list-page");
+		readProducts();
+	}
 	
 
 			/**Ending of DB Methods**/
@@ -86,9 +131,13 @@ $(document).ready(function(){
 
 	//Creates DB
 		 dbName= window.sqlitePlugin.openDatabase({name: "cgp.db"});
+		 
 		dbSettings();
 	//Opens Camera
 	$("#picFrame").tap(openCamera);
+
+	//Opens Edit Camera
+	$("#editPicFrame").tap(openEditCamera);
 
 	//Displays info-page
 	$("#informer").tap(function(){
@@ -98,9 +147,10 @@ $(document).ready(function(){
 
 	//Displays List Page	
 	$("#lister").tap(function(){
-		$(":mobile-pagecontainer").pagecontainer("change","#list-page");	
-		$("#productList").html(" ");
+		//$("#productList").html(" ");
+		$(":mobile-pagecontainer").pagecontainer("change","#list-page");
 		readProducts();
+
 	});
 
 	//Displays add-page width adjusted heights
@@ -108,9 +158,17 @@ $(document).ready(function(){
 		$(":mobile-pagecontainer").pagecontainer("change","#add-page");		
 		$("#picFrame,#picNameFrame").css("height",frameHeight+"px");//SPecifies height for the PicFrame and NameFrame
 		$("#picDescFrame").css("height",(pageHeight/100)*32+"px");//Specifies the height for the PicDescription
+
+		dbName.transaction(function(tx){
+			tx.executeSql("select * from cgptable",[],function(tx,results){				
+				$("#productIdBox").val(results.rows.length+1);
+			});			
+		});
 			
 	});
 
+	//Invokes Update function
+	$("#updatebtn").tap(updateProduct);
 	//Invokes webShower method
 	$("#weber").tap(webShower);
 	//Changes the height of the Map
@@ -118,6 +176,13 @@ $(document).ready(function(){
 	$(document).on("pageinit","#info-page",function(){
 	$("#mapFrame").css("height",mapHeight+"px");	
 });
+
+	//Displays the details of the selected Product to Edit	
+	$(document).on("click","#productList li",function(){
+				editProduct($(this).attr('id'));
+				$("#editPicFrame,#editPicNameFrame").css("height",frameHeight+"px");//SPecifies height for the PicFrame and NameFrame
+				$("#editPicDescFrame").css("height",(pageHeight/100)*32+"px");//Specifies the height for the PicDescription
+		});
 
 	$("#savebtn").tap(saveProduct);
 	//Device Ready

@@ -52,14 +52,14 @@
 
         <section data-role="page" data-theme="c" id="info-page">
             <header data-role="header" data-theme="c" data-position="fixed">
-                <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">Back</a>
+                <a href="#" data-role="button" data-rel="back" data-icon="carat-l" data-iconpos="notext">Back</a>
                 <h1>About Us</h1>
             </header>
             <article data-role="content">
             <div id="contactFrame" align="center">
                 <label for="contactNumber">Contact</label>
-                <a href="tel:914222434491"  id="contactNumber" data-role="button" data-inline="true">Tel: 91 (422) 2434491</a>
-               <a href="mailto:antonio@cgvak.com" id="contactMail" data-role="button" data-inline="true">Mail:antonio@cgvak.com </a>
+                <a href="tel:914222434491"  id="contactNumber" rel="external"  class="ui-btn ui-btn-inline ui-icon-phone ui-btn-icon-left">91 (422) 2434491</a>
+               <a href="mailto:antonio@cgvak.com" id="contactMail" rel="external" class="ui-btn ui-btn-inline ui-icon-mail ui-btn-icon-left">antonio@cgvak.com </a>
             </div>
             
             <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3916.0543531715057!2d76.951171!3d11.034549!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba858ed3864fa59%3A0xea04fa0d85c74695!2sCG-VAK!5e0!3m2!1sen!2sin!4v1423549424785"  frameborder="0" style="border:0" id="mapFrame" style="width:100%"></iframe>
@@ -71,7 +71,7 @@
         </section>
         <section data-role="page" id="add-page">
             <header data-role="header" data-theme="c" data-position="fixed">
-            <a href="#" data-role="button" data-rel="back" data-icon="back" data-iconpos="notext">Back</a>
+            <a href="#" data-role="button" data-rel="back" data-icon="carat-l" data-iconpos="notext">Back</a>
             <h1>Add Products</h1>
             <a href="#" data-role="button" id="savebtn" data-icon="check" data-iconpos="notext">Save</a>
             </header>
@@ -92,10 +92,11 @@
         </section>
         <section data-role="page" id="list-page">
         <header data-role="header" data-theme="c" data-position="fixed">
+            <a href="#" data-role="button" data-rel="back" data-icon="carat-l" data-iconpos="notext">Back</a>
             <h1>Product List</h1>
         </header>
         <article data-role="content">
-            <ul data-role="listview" id="productList"></ul>
+            <ul data-role="listview" id="productList" data-icon="false"></ul>
         </article>
         <footer data-role="footer" data-theme="c" data-position="fixed" data-tap-toggle="false">
                 <h1>&copy All Rights Reserved</h1>
@@ -103,7 +104,22 @@
         </section>
 
         <section data-role="page" id="edit-page">
-            
+            <header data-role="header" data-theme="c" data-position="fixed">
+            <a href="#" data-role="button" data-rel="back" data-icon="carat-l" data-iconpos="notext">Back</a>
+            <h1>Edit Product</h1>
+            </header>
+            <article data-role="content">
+                 <div class="product_pic" id="editPicFrame"></div>
+                <div class="product_id" id="editPicNameFrame">   
+                    <input type="text" placeholder="Product Name" id="editProductNameBox" />
+                    <input type="text" placeholder="Product Code" id="editProductIdBox" readonly="true" />           
+                </div>
+                <div class="product_description" id="editPicDescFrame" >
+                    <textarea id="editProductDescBox" placeholder="Product Description"></textarea>
+                    <input type="text" placeholder="Product Price" id="editPicPriceBox" />
+                </div> 
+                <input type="button" data-icon="arrow-u" value="Update" id="updatebtn" />
+            </article>
         </section>
         <script type="text/javascript" src="cordova.js"></script>
         
