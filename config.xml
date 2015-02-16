@@ -39,5 +39,6 @@
     <gap:plugin name="org.apache.cordova.camera" version="0.3.2" />
     <gap:plugin name="nl.x-services.plugins.toast" />
     <gap:plugin name="com.brodysoft.sqliteplugin" version="1.0.0" />
+    <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
 
 </widget>

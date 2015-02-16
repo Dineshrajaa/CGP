@@ -2,9 +2,7 @@ $(document).ready(function(){
 	var mapHeight =$(window).height() - 100;//To Set the Height Map layout
 	var pageHeight=$(window).height()-44;//To detect device height
 	var frameHeight=(pageHeight/100)*30;//To Set Picture Frame Height
-	var dbName;
-	var uid;
-
+	var dbName,uid,gid;
 	
 	
 	//Method to load office site in Inappbrowser
@@ -124,6 +122,22 @@ $(document).ready(function(){
 		$(":mobile-pagecontainer").pagecontainer("change","#list-page");
 		readProducts();
 	}
+
+	//Method to Delete Product
+	$("#deletebtn").tap(function(){
+		deleteProduct($("#editProductIdBox").val());
+	});
+	
+	
+	//Method to Delete Data
+	function deleteProduct(did){
+		alert("Do you want to Delete?");
+		dbName.transaction(function(tx){
+			tx.executeSql("delete from cgptable where pid=?",[did]);
+		});
+		$(":mobile-pagecontainer").pagecontainer("change","#list-page");
+		readProducts();
+	}
 	
 
 			/**Ending of DB Methods**/
@@ -158,7 +172,7 @@ $(document).ready(function(){
 		$(":mobile-pagecontainer").pagecontainer("change","#add-page");		
 		$("#picFrame,#picNameFrame").css("height",frameHeight+"px");//SPecifies height for the PicFrame and NameFrame
 		$("#picDescFrame").css("height",(pageHeight/100)*32+"px");//Specifies the height for the PicDescription
-
+		$("#picFrame,#productNameBox,#productDescBox,#picPriceBox").html(" ");
 		dbName.transaction(function(tx){
 			tx.executeSql("select * from cgptable",[],function(tx,results){				
 				$("#productIdBox").val(results.rows.length+1);
@@ -183,6 +197,8 @@ $(document).ready(function(){
 				$("#editPicFrame,#editPicNameFrame").css("height",frameHeight+"px");//SPecifies height for the PicFrame and NameFrame
 				$("#editPicDescFrame").css("height",(pageHeight/100)*32+"px");//Specifies the height for the PicDescription
 		});
+
+	
 
 	$("#savebtn").tap(saveProduct);
 	//Device Ready
